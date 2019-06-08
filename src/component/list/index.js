@@ -1,22 +1,20 @@
-import React,{ useCallback } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Card from '../card/index'
 import './styles.sass'
 
 const List = ({
     data=[],
-    loading
+    loading,
+    onClickItem
 }) => {
-    const onClickUser = useCallback(()=>{
-        console.log("Se seleciono el usuario")
-    },[])
     return ( 
-        <div className="container-list">
+        <div className="container-list slideshow ">
                 {
                     data.map(item=>{
                         return(
                             <Card key={item.id}
-                                onClick={onClickUser}
+                                onClick={ onClickItem }
                                 avatar={item.avatar}  
                                 email={item.email}
                                 first_name={item.first_name}
@@ -31,7 +29,8 @@ const List = ({
 
 List.propTypes = {
     data: PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
+    onClickItem: PropTypes.func.isRequired
 }
 
 export default List; 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import './styles.sass'
 
@@ -9,8 +9,11 @@ const Card = ({
     avatar,
     onClick
 }) => {
+    const onClickGetItem = useCallback(()=>{
+        onClick({email,first_name,last_name,avatar})
+    },[email,first_name,last_name,avatar,onClick])
     return ( 
-    <div onClick={ onClick } className="container-card">
+    <div onClick={ onClickGetItem } className="container-card">
         <img className="profile-picture" src={avatar} alt={first_name}/>
         <span className="title-card">{first_name} {last_name}</span>
         <span className="detail-card">{email}</span>
